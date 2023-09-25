@@ -1,0 +1,35 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install python3 and pip3
+    package:
+      name:
+         - "{{ python_package }}"
+         - "{{ pip_package }}"
+      state: latest
+      
+  - name: Use pip3 as default pip
+    command: echo "alias python=/usr/local/bin/python3" >> ~/.bashrc
+
+  - name: Use python3 as default python      
+    command: echo "alias pip=/usr/local/bin/pip3" >> ~/.bashrc
+
+  - name: install Java open-jdk
+    package:
+      name:
+        - "{{ java_package }}"
+      state: latest
+
+
+  - name: Create MOTD
+    template:
+      src: motd.j2
+      dest: /etc/motd
+
+
+  - name: Create User with a variable defined in config.yml
+    user:
+      name: "{{ username | default(username) }}"
+      state: present

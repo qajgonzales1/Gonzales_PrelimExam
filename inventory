@@ -1,0 +1,12 @@
+[Servers]
+192.168.56.106 ansible_python_interpreter=/usr/bin/python3
+192.168.56.108 ansible_python_interpreter=/usr/bin/python
+
+192.168.56.106 python_package=python3 pip_package=python3-pip
+192.168.56.108 python_package=python3 pip_package=python3-pip
+
+192.168.56.106 java_package=openjdk-8-jdk
+192.168.56.108 java_package=java-1.8.0-openjdk
+
+192.168.56.106 username=gonzales@managemode
+192.168.56.108 username=gonzales@localhost
